@@ -21,9 +21,6 @@ services:
             - '../src/Kernel.php'
 
     App\Command\ExportDestinationsCommand:
-        arguments:
-            $destinationRepository: '@App\Repository\DestinationRepository'
-            $publicDir: '%kernel.project_dir%/public'
         tags:
             - name: 'console.command'
     # add more service definitions when explicit configuration is needed

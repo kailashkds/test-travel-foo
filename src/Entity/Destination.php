@@ -19,7 +19,6 @@ class Destination
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: Types::INTEGER)]
-    #[Assert\NotBlank]
     #[Groups(['destination:list'])]
     private ?int $id = null;
 
@@ -43,7 +42,6 @@ class Destination
     #[Groups(['destination:list'])]
     private string $duration;
 
-    #[Assert\NotBlank]
     #[ORM\Column(type: Types::STRING, length: 255)]
     private ?string $imageName = null;
 
