@@ -1,5 +1,7 @@
 twig:
     file_name_pattern: '*.twig'
+    globals:
+        vich_uploader_asset: '@Vich\UploaderBundle\Twig\Extension\UploaderExtension'
 
 when@test:
     twig:

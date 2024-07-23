@@ -1,19 +1,40 @@
-version: '3'
+version: '3.8'
 
 services:
-###> doctrine/doctrine-bundle ###
-  database:
-    ports:
-      - "5432"
-###< doctrine/doctrine-bundle ###
+  php:
+    build:
+      context: ./.docker/php
+    container_name: travel_php
+    volumes:
+      - .:/var/www/html
+      - ./.docker/php/php.ini:/usr/local/etc/php/php.ini
+    depends_on:
+      - mysql
 
-###> symfony/mailer ###
-  mailer:
-    image: axllent/mailpit
-    ports:
-      - "1025"
-      - "8025"
+  mysql:
+    image: mysql:8.0
+    container_name: travel_mysql
     environment:
-      MP_SMTP_AUTH_ACCEPT_ANY: 1
-      MP_SMTP_AUTH_ALLOW_INSECURE: 1
-###< symfony/mailer ###
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: travel
+      MYSQL_USER: travel
+      MYSQL_PASSWORD: travel
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./.docker/mysql/data:/var/lib/mysql
+      - ./.docker/mysql/init:/docker-entrypoint-initdb.d
+
+  nginx:
+    image: nginx:alpine
+    container_name: travel_nginx
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+      - ./.docker/nginx/:/etc/nginx/conf.d/
+    depends_on:
+      - php
+
+volumes:
+  mysql_data:

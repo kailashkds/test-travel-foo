@@ -1,0 +1,43 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block body %}
+    <h1>Destinations</h1>
+    <a href="{{ path('admin_destination_new') }}" class="btn btn-primary">create new</a>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Duration</th>
+            <th>Images</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for destination in pagination %}
+            <tr>
+                <td>{{ destination.name }}</td>
+                <td>{{ destination.description }}</td>
+                <td>{{ destination.price }}</td>
+                <td>{{ destination.duration }}</td>
+                <td>
+                    <img src="{{ vich_uploader_asset(destination, 'imageFile') }}" alt="{{ destination.name }}" width="100">
+                </td>
+                <td>
+                    <a href="{{ path('admin_destination_show', {id: destination.id}) }}" class="btn btn-success">Show</a>
+                    <a href="{{ path('admin_destination_edit', {id: destination.id}) }}" class="btn btn-primary">Edit</a>
+                    <form method="post" action="{{ path('admin_destination_delete', {id: destination.id}) }}" onsubmit="return confirm('Are you sure?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ destination.id) }}">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+{% endblock %}

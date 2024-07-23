@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mb-4">
+                    <img src="{{ vich_uploader_asset(destination, 'imageFile') }}" class="card-img-top" alt="{{ destination.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ destination.name }}</h5>
+                        <p class="card-text">{{ destination.description }}</p>
+                        <p class="card-text"><strong>Price:</strong> {{ destination.price }}</p>
+                        <p class="card-text"><strong>Duration:</strong> {{ destination.duration }}</p>
+                    </div>
+                </div>
+                <a href="{{ path('home') }}" class="btn btn-primary">Back to list</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
