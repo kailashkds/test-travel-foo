@@ -10,7 +10,7 @@
 1. **Clone the Repository**
 
    ```bash
-   git clone (https://github.com/kailashkds/test-travel-foo.git)
+   git clone https://github.com/kailashkds/test-travel-foo.git
    cd test-travel-foo
     ```
 ## Setup Instructions
