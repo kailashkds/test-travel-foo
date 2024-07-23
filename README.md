@@ -10,8 +10,8 @@
 1. **Clone the Repository**
 
    ```bash
-   git clone <repository-url>
-   cd <repository-folder>
+   git clone (https://github.com/kailashkds/test-travel-foo.git)
+   cd test-travel-foo
     ```
 ## Setup Instructions
 
